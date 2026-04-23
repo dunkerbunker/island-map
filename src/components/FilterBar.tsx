@@ -57,8 +57,8 @@ const FilterBar: React.FC = () => {
       <div className="liquid-glass rounded-[2rem] p-5 pointer-events-auto" suppressHydrationWarning>
         
         <div className="flex items-center gap-3 mb-5">
-          <div className="w-10 h-10 bg-theme-accent rounded-[14px] flex items-center justify-center text-theme-accent-text shadow-lg relative overflow-hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="relative z-10"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div className="w-10 h-10 bg-theme-accent rounded-[14px] flex items-center justify-center text-theme-accent-text shadow-lg relative overflow-hidden ring-2 ring-theme-border">
+            <img src="/logo.png" alt="Logo" className="w-full h-full object-cover" />
           </div>
           <div>
             <h1 className="text-xl font-extrabold text-theme-text-main leading-tight drop-shadow-sm tracking-tight">Hulhumalé Map</h1>
