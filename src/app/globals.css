@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+@theme {
+  --color-theme-bg: var(--theme-bg);
+  --color-theme-text-main: var(--theme-text-main);
+  --color-theme-text-muted: var(--theme-text-muted);
+  --color-theme-text-invert: var(--theme-text-invert);
+  
+  --color-theme-element: var(--theme-element);
+  --color-theme-element-hover: var(--theme-element-hover);
+  --color-theme-surface-focus: var(--theme-surface-focus);
+  
+  --color-theme-border: var(--theme-border);
+  --color-theme-border-focus: var(--theme-border-focus);
+  --color-theme-ring: var(--theme-ring);
+  
+  --color-theme-accent: var(--theme-accent);
+  --color-theme-accent-hover: var(--theme-accent-hover);
+  --color-theme-accent-text: var(--theme-accent-text);
+  
+  --color-theme-danger: var(--theme-danger);
+  --color-theme-danger-hover: var(--theme-danger-hover);
+  
+  --color-theme-overlay: var(--theme-overlay);
+  --color-theme-cover-overlay: var(--theme-cover-overlay);
+  --color-theme-placeholder: var(--theme-placeholder);
+  
+  --color-theme-image-bg: var(--theme-image-bg);
+  --color-theme-drawer-line: var(--theme-drawer-line);
+}
+
+:root {
+  --theme-bg: #f5f5f7;
+  --theme-text-main: #000000;
+  --theme-text-muted: #222222; 
+  --theme-text-invert: #ffffff;
+  
+  --theme-element: rgba(0, 0, 0, 0.05); 
+  --theme-element-hover: rgba(0, 0, 0, 0.08);
+  --theme-surface-focus: #ffffff;
+  
+  --theme-border: rgba(0, 0, 0, 0.1);
+  --theme-border-focus: rgba(0, 0, 0, 0.2);
+  --theme-ring: rgba(0, 0, 0, 0.1);
+  
+  --theme-accent: #000000;
+  --theme-accent-hover: #333333;
+  --theme-accent-text: #ffffff;
+  
+  --theme-danger: #ef4444;
+  --theme-danger-hover: #dc2626;
+  
+  --theme-overlay: rgba(0, 0, 0, 0.4);
+  --theme-cover-overlay: rgba(0, 0, 0, 0.8);
+  --theme-placeholder: rgba(0, 0, 0, 0.6);
+  --theme-image-bg: #e5e7eb;
+  --theme-drawer-line: rgba(0, 0, 0, 0.2);
+
+  --theme-glass-bg: rgba(255, 255, 255, 0.85);
+  --theme-glass-border: rgba(0, 0, 0, 0.08);
+  --theme-glass-shadow: rgba(0, 0, 0, 0.06);
+  --theme-overlay-gradient: rgba(255,255,255,0.1);
+  --theme-selection-bg: #000000;
+  --theme-selection-text: #ffffff;
+  --theme-glow: rgba(0,0,0,0.15);
+}
+
+.dark {
+  --theme-bg: #000000;
+  --theme-text-main: #ffffff;
+  --theme-text-muted: #9ca3af; 
+  --theme-text-invert: #000000;
+  
+  --theme-element: rgba(255, 255, 255, 0.1); 
+  --theme-element-hover: rgba(255, 255, 255, 0.2);
+  --theme-surface-focus: #1c1c1e;
+  
+  --theme-border: rgba(255, 255, 255, 0.1);
+  --theme-border-focus: rgba(255, 255, 255, 0.2);
+  --theme-ring: rgba(255, 255, 255, 0.2);
+  
+  --theme-accent: #ffffff;
+  --theme-accent-hover: #e5e7eb;
+  --theme-accent-text: #000000;
+  
+  --theme-danger: #f87171;
+  --theme-danger-hover: #ef4444;
+  
+  --theme-overlay: rgba(0, 0, 0, 0.7);
+  --theme-cover-overlay: rgba(0, 0, 0, 0.8);
+  --theme-placeholder: rgba(156, 163, 175, 1);
+  --theme-image-bg: #1c1c1e;
+  --theme-drawer-line: rgba(255, 255, 255, 0.2);
+
+  --theme-glass-bg: rgba(30, 30, 30, 0.65);
+  --theme-glass-border: rgba(255, 255, 255, 0.08);
+  --theme-glass-shadow: rgba(0, 0, 0, 0.4);
+  --theme-overlay-gradient: rgba(255,255,255,0.05);
+  --theme-selection-bg: #ffffff;
+  --theme-selection-text: #000000;
+  --theme-glow: rgba(255,255,255,0.15);
+}
+
+::selection {
+  background-color: var(--theme-selection-bg);
+  color: var(--theme-selection-text);
+}
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+.liquid-glass {
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  background: var(--theme-glass-bg);
+  border: 1px solid var(--theme-glass-border);
+  box-shadow: 0 8px 32px var(--theme-glass-shadow);
+}
+
+.liquid-overlay {
+  position: relative;
+  overflow: hidden;
+}
+
+.liquid-overlay::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to bottom, var(--theme-overlay-gradient) 0%, rgba(255,255,255,0) 100%);
+  pointer-events: none;
+}

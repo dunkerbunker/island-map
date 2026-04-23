@@ -1,0 +1,12 @@
+services:
+  island-map:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: island-map-app
+    restart: always
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_TELEMETRY_DISABLED=1

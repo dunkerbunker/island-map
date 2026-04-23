@@ -1,0 +1,8 @@
+{
+  "name": "Hulhumalé Map",
+  "description": "An interactive map and local discovery guide exclusively for Hulhumalé, Maldives.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": []
+}
