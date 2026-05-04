@@ -29,7 +29,7 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 const MapComponent: React.FC<MapProps> = ({ places }) => {
-  const { selectedPlaceId, setSelectedPlaceId, isDarkMode } = useStore();
+  const { selectedPlaceId, setSelectedPlaceId, isDarkMode, isMapLoaded, setIsMapLoaded } = useStore();
   const mapRef = useRef<MapRef | null>(null);
 
   const [bounds, setBounds] = useState<BBox | undefined>(undefined);
@@ -83,6 +83,54 @@ const MapComponent: React.FC<MapProps> = ({ places }) => {
 
   return (
     <div className="w-full h-full relative" style={{ isolation: 'isolate' }}>
+      <AnimatePresence>
+        {!isMapLoaded && (
+          <motion.div 
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-theme-bg"
+          >
+            <div className="relative">
+              <motion.div 
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  rotate: [0, 180, 360],
+                  borderRadius: ["20%", "50%", "20%"]
+                }}
+                transition={{ 
+                  duration: 2, 
+                  repeat: Infinity,
+                  ease: "easeInOut" 
+                }}
+                className="w-20 h-20 bg-theme-accent shadow-[0_0_40px_rgba(var(--theme-accent-rgb),0.5)]"
+              />
+              <div className="absolute inset-0 flex items-center justify-center text-theme-accent-text">
+                <MapPin size={32} />
+              </div>
+            </div>
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="mt-8 text-center"
+            >
+              <h2 className="text-xl font-extrabold text-theme-text-main tracking-tight">Exploring Hulhumalé</h2>
+              <div className="mt-3 flex gap-1 justify-center">
+                {[0, 1, 2].map((i) => (
+                  <motion.div
+                    key={i}
+                    animate={{ opacity: [0.3, 1, 0.3] }}
+                    transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.2 }}
+                    className="w-1.5 h-1.5 rounded-full bg-theme-accent"
+                  />
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <MapGL
         ref={mapRef}
         initialViewState={{
@@ -106,6 +154,7 @@ const MapComponent: React.FC<MapProps> = ({ places }) => {
           }
         }}
         onLoad={() => {
+          setIsMapLoaded(true);
           if (mapRef.current) {
             setZoom(mapRef.current.getZoom());
             const bounds = mapRef.current.getMap().getBounds();
